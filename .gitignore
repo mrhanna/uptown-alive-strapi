@@ -151,3 +151,7 @@ test-results
 # Strapi
 ############################
 examples/**/types/generated
+
+.env*
+!.env.example
+.strapi
