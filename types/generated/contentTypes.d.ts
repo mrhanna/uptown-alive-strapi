@@ -830,6 +830,8 @@ export interface ApiBusinessBusiness extends Schema.CollectionType {
       'manyToMany',
       'api::feature.feature'
     >;
+    website: Attribute.String;
+    address: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -895,7 +897,7 @@ export interface ApiTagTag extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
@@ -907,7 +909,6 @@ export interface ApiTagTag extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &

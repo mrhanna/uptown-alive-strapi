@@ -26,6 +26,12 @@
       "relation": "manyToMany",
       "target": "api::feature.feature",
       "mappedBy": "businesses"
+    },
+    "website": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
     }
   }
 }
