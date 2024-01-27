@@ -846,6 +846,7 @@ export interface ApiBusinessBusiness extends Schema.CollectionType {
     website: Attribute.String;
     address: Attribute.String;
     slug: Attribute.String & Attribute.Unique;
+    coordinate: Attribute.Component<'general.coordinate'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

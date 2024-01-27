@@ -37,6 +37,11 @@
       "type": "string",
       "unique": true,
       "required": false
+    },
+    "coordinate": {
+      "type": "component",
+      "repeatable": false,
+      "component": "general.coordinate"
     }
   }
 }
