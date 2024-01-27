@@ -32,6 +32,11 @@
     },
     "address": {
       "type": "string"
+    },
+    "slug": {
+      "type": "string",
+      "unique": true,
+      "required": false
     }
   }
 }

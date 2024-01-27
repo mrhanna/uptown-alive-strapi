@@ -26,6 +26,9 @@
       "relation": "manyToMany",
       "target": "api::business.business",
       "inversedBy": "features"
+    },
+    "slug": {
+      "type": "string"
     }
   }
 }
