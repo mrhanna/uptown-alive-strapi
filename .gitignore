@@ -155,3 +155,4 @@ examples/**/types/generated
 .env*
 !.env.example
 .strapi
+.strapi-updater.json
