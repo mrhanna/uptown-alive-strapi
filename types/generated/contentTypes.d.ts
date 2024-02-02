@@ -843,10 +843,9 @@ export interface ApiBusinessBusiness extends Schema.CollectionType {
       'manyToMany',
       'api::feature.feature'
     >;
-    website: Attribute.String;
-    address: Attribute.String;
     slug: Attribute.String & Attribute.Unique;
     coordinate: Attribute.Component<'general.coordinate'>;
+    profileInfo: Attribute.DynamicZone<['business.hours', 'business.links']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

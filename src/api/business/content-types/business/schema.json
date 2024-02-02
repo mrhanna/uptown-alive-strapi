@@ -27,12 +27,6 @@
       "target": "api::feature.feature",
       "mappedBy": "businesses"
     },
-    "website": {
-      "type": "string"
-    },
-    "address": {
-      "type": "string"
-    },
     "slug": {
       "type": "string",
       "unique": true,
@@ -42,6 +36,13 @@
       "type": "component",
       "repeatable": false,
       "component": "general.coordinate"
+    },
+    "profileInfo": {
+      "type": "dynamiczone",
+      "components": [
+        "business.hours",
+        "business.links"
+      ]
     }
   }
 }

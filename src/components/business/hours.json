@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_business_hours",
+  "info": {
+    "displayName": "hours",
+    "icon": "clock"
+  },
+  "options": {},
+  "attributes": {
+    "sunday": {
+      "type": "component",
+      "repeatable": false,
+      "component": "general.time-range"
+    },
+    "monday": {
+      "type": "component",
+      "repeatable": false,
+      "component": "general.time-range"
+    },
+    "tuesday": {
+      "type": "component",
+      "repeatable": false,
+      "component": "general.time-range"
+    },
+    "wednesday": {
+      "type": "component",
+      "repeatable": false,
+      "component": "general.time-range"
+    },
+    "thursday": {
+      "type": "component",
+      "repeatable": false,
+      "component": "general.time-range"
+    },
+    "friday": {
+      "type": "component",
+      "repeatable": false,
+      "component": "general.time-range"
+    },
+    "saturday": {
+      "type": "component",
+      "repeatable": false,
+      "component": "general.time-range"
+    }
+  }
+}

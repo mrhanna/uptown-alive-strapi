@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_general_time_ranges",
+  "info": {
+    "displayName": "timeRange"
+  },
+  "options": {},
+  "attributes": {
+    "from": {
+      "type": "time"
+    },
+    "to": {
+      "type": "time"
+    }
+  }
+}

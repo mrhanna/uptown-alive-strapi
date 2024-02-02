@@ -1,5 +1,38 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface BusinessHours extends Schema.Component {
+  collectionName: 'components_business_hours';
+  info: {
+    displayName: 'hours';
+    icon: 'clock';
+  };
+  attributes: {
+    sunday: Attribute.Component<'general.time-range'>;
+    monday: Attribute.Component<'general.time-range'>;
+    tuesday: Attribute.Component<'general.time-range'>;
+    wednesday: Attribute.Component<'general.time-range'>;
+    thursday: Attribute.Component<'general.time-range'>;
+    friday: Attribute.Component<'general.time-range'>;
+    saturday: Attribute.Component<'general.time-range'>;
+  };
+}
+
+export interface BusinessLinks extends Schema.Component {
+  collectionName: 'components_general_links';
+  info: {
+    displayName: 'links';
+    icon: 'link';
+    description: '';
+  };
+  attributes: {
+    website: Attribute.String;
+    facebook: Attribute.String;
+    instagram: Attribute.String;
+    twitter: Attribute.String;
+    tiktok: Attribute.String;
+  };
+}
+
 export interface GeneralCoordinate extends Schema.Component {
   collectionName: 'components_general_coordinates';
   info: {
@@ -11,10 +44,24 @@ export interface GeneralCoordinate extends Schema.Component {
   };
 }
 
+export interface GeneralTimeRange extends Schema.Component {
+  collectionName: 'components_general_time_ranges';
+  info: {
+    displayName: 'timeRange';
+  };
+  attributes: {
+    from: Attribute.Time;
+    to: Attribute.Time;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'business.hours': BusinessHours;
+      'business.links': BusinessLinks;
       'general.coordinate': GeneralCoordinate;
+      'general.time-range': GeneralTimeRange;
     }
   }
 }
