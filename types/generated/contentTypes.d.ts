@@ -844,8 +844,9 @@ export interface ApiBusinessBusiness extends Schema.CollectionType {
       'api::feature.feature'
     >;
     slug: Attribute.String & Attribute.Unique;
-    coordinate: Attribute.Component<'general.coordinate'>;
-    profileInfo: Attribute.DynamicZone<['business.hours', 'business.links']>;
+    profileInfo: Attribute.DynamicZone<
+      ['business.hours', 'business.links', 'general.location']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

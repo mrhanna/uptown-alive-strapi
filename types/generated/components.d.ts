@@ -44,6 +44,20 @@ export interface GeneralCoordinate extends Schema.Component {
   };
 }
 
+export interface GeneralLocation extends Schema.Component {
+  collectionName: 'components_general_locations';
+  info: {
+    displayName: 'location';
+    icon: 'pinMap';
+    description: '';
+  };
+  attributes: {
+    address: Attribute.String;
+    lat: Attribute.Float;
+    lon: Attribute.Float;
+  };
+}
+
 export interface GeneralTimeRange extends Schema.Component {
   collectionName: 'components_general_time_ranges';
   info: {
@@ -61,6 +75,7 @@ declare module '@strapi/types' {
       'business.hours': BusinessHours;
       'business.links': BusinessLinks;
       'general.coordinate': GeneralCoordinate;
+      'general.location': GeneralLocation;
       'general.time-range': GeneralTimeRange;
     }
   }

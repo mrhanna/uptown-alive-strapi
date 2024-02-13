@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_general_locations",
+  "info": {
+    "displayName": "location",
+    "icon": "pinMap",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "address": {
+      "type": "string"
+    },
+    "lat": {
+      "type": "float"
+    },
+    "lon": {
+      "type": "float"
+    }
+  }
+}

@@ -32,16 +32,12 @@
       "unique": true,
       "required": false
     },
-    "coordinate": {
-      "type": "component",
-      "repeatable": false,
-      "component": "general.coordinate"
-    },
     "profileInfo": {
       "type": "dynamiczone",
       "components": [
         "business.hours",
-        "business.links"
+        "business.links",
+        "general.location"
       ]
     }
   }
