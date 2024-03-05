@@ -870,7 +870,7 @@ export interface ApiFeatureFeature extends Schema.CollectionType {
   info: {
     singularName: 'feature';
     pluralName: 'features';
-    displayName: 'feature';
+    displayName: 'Feature';
     description: '';
   };
   options: {
@@ -909,7 +909,7 @@ export interface ApiTagTag extends Schema.CollectionType {
   info: {
     singularName: 'tag';
     pluralName: 'tags';
-    displayName: 'tag';
+    displayName: 'Tag';
     description: '';
   };
   options: {
