@@ -156,3 +156,5 @@ examples/**/types/generated
 !.env.example
 .strapi
 .strapi-updater.json
+# React Component Preview
+previewConfig.json

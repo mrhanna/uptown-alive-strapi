@@ -7,12 +7,8 @@ export default function LocationButton() {
 
     const onClick = async function() {
         // find array idx of "general.location" component
-        console.log(modifiedData);
-        const idx = modifiedData.profileInfo.findIndex((comp) => comp.__component ==='general.location');
 
-        if (idx === -1) return;
-
-        const address = modifiedData.profileInfo[idx].address;
+        const address = modifiedData.location.address;
         
         if (!address) return;
 
@@ -24,14 +20,14 @@ export default function LocationButton() {
 
         onChange({
             target: {
-                name: `profileInfo.${idx}.lat`,
+                name: `location.lat`,
                 value: lat,
             }
         });
 
         onChange({
             target: {
-                name: `profileInfo.${idx}.lon`,
+                name: `location.lon`,
                 value: lon,
             }
         });
