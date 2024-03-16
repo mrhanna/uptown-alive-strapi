@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useIntl } from 'react-intl';
 import getTrad from '../../utils/getTrad';
 
 import {
     Button,
+    Box,
     Flex,
     Grid,
     GridItem,
+    IconButton,
     TextInput,
     ToggleInput,
     Typography,
 } from '@strapi/design-system';
+
+import {
+    Plus,
+    Cross,
+} from '@strapi/icons';
 
 const HoursRow = (props) => {
     const {
@@ -21,9 +28,19 @@ const HoursRow = (props) => {
         slice,
     } = props;
 
-    const [state, setState] = slice;
-
+    const [state, dispatch] = slice;
     const { formatMessage } = useIntl();
+    console.log(state);
+
+    const slots = state.hours?.map(({from, to}, slotNumber) => (
+        <HoursSlot 
+            from={from}
+            to={to}
+            dispatch={(action) => { dispatch({...action, slot: slotNumber}) }}
+            allowRemove={state.hours.length > 1}
+            key={slotNumber} 
+        />
+    ))
 
     return (
         <Grid padding={2}>
@@ -45,38 +62,82 @@ const HoursRow = (props) => {
                         })
                     }
                     checked={!state.closed}
-                    onChange={() => setState({closed: !state.closed})}
+                    onChange={() => dispatch({type: 'TOGGLE'})}
                 />
 
                 { !state.closed &&
                     <Flex direction="row" gap={4} marginTop={4}>
-                        <TextInput
-                            label="Opens" 
-                            value={state.from}
-                            onChange={(e) => setState({...state, from: e.target.value})}
-                            disabled={state.closed}
-                            type="time"
-                        />
-                        <TextInput
-                            label="Closes" 
-                            value={state.to}
-                            onChange={(e) => setState({...state, to: e.target.value})}
-                            disabled={state.closed}
-                            type="time"
-                        />
-                        <Button
-                            onClick={() => setClipboard(state)}
-                            disabled={state.closed}
-                            >Copy</Button>
-                        <Button
-                            disabled={Object.keys(clipboard).length === 0 || state.closed}
-                            onClick={() => setState(clipboard)}
-                            >Paste</Button>
+                        <Box>
+                            {slots}
+                        </Box>
+                        <Box>
+                            <IconButton 
+                                onClick={() => dispatch({type: 'ADD_SLOT'})}
+                                label="Add a time slot"
+                                icon={<Plus />}
+                            />
+                        </Box>
+                        <Box>
+                            <Button
+                                onClick={() => setClipboard(state)}
+                                disabled={state.closed}
+                                >Copy</Button>
+                            <Button
+                                disabled={Object.keys(clipboard).length === 0 || state.closed}
+                                onClick={() => dispatch({ type: 'REPLACE', value: clipboard })}
+                                >Paste</Button>
+                        </Box>
                     </Flex>
                 }
             </GridItem>
         </Grid>
     );
 };
+
+function HoursSlot({from, to, dispatch, allowRemove}) {
+    return (
+        <Flex direction="row" gap={4}>
+            <TextInput
+                label="Opens"
+                style={{width: 120}}
+                value={from}
+                onChange={
+                    (e) => {
+                        dispatch({
+                            type: 'EDIT',
+                            side: 'from',
+                            value: e.target.value,
+                        });
+                    }
+                }
+                type="time"
+            />
+            <TextInput
+                label="Closes" 
+                style={{width: 120}}
+                value={to}
+                onChange={
+                    (e) => {
+                        dispatch({
+                            type: 'EDIT',
+                            side: 'to',
+                            value: e.target.value,
+                        });
+                    }
+                }
+                type="time"
+            />
+            <Box style={{width: 50}}>
+                {allowRemove &&
+                    <IconButton 
+                        onClick={() => dispatch({type: 'REMOVE_SLOT'})}
+                        label="Remove this time slot"
+                        icon={<Cross />}
+                    />
+                }
+            </Box>
+        </Flex>
+    );
+}
 
 export default HoursRow;
