@@ -16,8 +16,10 @@ import {
 } from '@strapi/design-system';
 
 import {
-    Plus,
     Cross,
+    Duplicate,
+    Magic,
+    Plus,
 } from '@strapi/icons';
 
 const HoursRow = (props) => {
@@ -70,22 +72,26 @@ const HoursRow = (props) => {
                         <Box>
                             {slots}
                         </Box>
-                        <Box>
+                        <Box style={{alignSelf: 'end'}}>
                             <IconButton 
                                 onClick={() => dispatch({type: 'ADD_SLOT'})}
                                 label="Add a time slot"
                                 icon={<Plus />}
                             />
                         </Box>
-                        <Box>
-                            <Button
+                        <Box style={{alignSelf: 'start'}}>
+                            <IconButton
                                 onClick={() => setClipboard(state)}
+                                label="Copy"
                                 disabled={state.closed}
-                                >Copy</Button>
-                            <Button
+                                icon={<Duplicate />}
+                            />
+                            <IconButton
                                 disabled={Object.keys(clipboard).length === 0 || state.closed}
                                 onClick={() => dispatch({ type: 'REPLACE', value: clipboard })}
-                                >Paste</Button>
+                                label="Paste"
+                                icon={<Magic />}
+                            />
                         </Box>
                     </Flex>
                 }
