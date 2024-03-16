@@ -14,4 +14,8 @@ module.exports = ({ env }) => ({
             },
         },
     },
+    'strapi-business-hours': {
+        enabled: true,
+        resolve: './src/plugins/strapi-business-hours'
+    },
 });

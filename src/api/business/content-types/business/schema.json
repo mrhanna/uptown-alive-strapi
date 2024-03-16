@@ -43,9 +43,8 @@
       "component": "business.links"
     },
     "hours": {
-      "type": "component",
-      "repeatable": false,
-      "component": "business.hours"
+      "type": "customField",
+      "customField": "plugin::strapi-business-hours.businessHours"
     }
   }
 }
