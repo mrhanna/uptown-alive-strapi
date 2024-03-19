@@ -5,6 +5,7 @@ import getTrad from '../../utils/getTrad';
 
 import {
     Box,
+    Button,
     Checkbox,
     Flex,
     Grid,
@@ -45,11 +46,11 @@ const HoursRow = (props) => {
     ))
 
     return (
-        <Grid padding={2}>
-            <GridItem col={3} padding={4}>
+        <Grid padding={6}>
+            <GridItem col={3} padding={[3, 2]}>
                 <Typography fontWeight="bold">{label}</Typography>
             </GridItem>
-            <GridItem col={9} padding={4}>
+            <GridItem col={5} padding={[3, 2]}>
                 <ToggleInput 
                     onLabel={
                         formatMessage({
@@ -66,81 +67,92 @@ const HoursRow = (props) => {
                     checked={!state.closed}
                     onChange={() => dispatch({type: 'TOGGLE_CLOSED'})}
                 />
-
-                {!state.closed &&
-                    <Checkbox
-                        checked={state.allDay}
-                        onChange={() => dispatch({type: 'TOGGLE_24'})}
-                    >Open 24 Hours</Checkbox>
-                }
-
-                {!state.closed && !state.allDay &&
-                    <Flex direction="row" gap={4} marginTop={4}>
-                        <Box>
-                            {slots}
-                        </Box>
-                        <Box style={{alignSelf: 'end'}}>
-                            <IconButton 
-                                onClick={() => dispatch({type: 'ADD_SLOT'})}
-                                label="Add a time slot"
-                                icon={<Plus />}
-                            />
-                        </Box>
-                        <Box style={{alignSelf: 'start'}}>
-                            <IconButton
-                                onClick={() => setClipboard(state)}
-                                label="Copy"
-                                disabled={state.closed}
-                                icon={<Duplicate />}
-                            />
-                            <IconButton
-                                disabled={Object.keys(clipboard).length === 0 || state.closed}
-                                onClick={() => dispatch({ type: 'REPLACE', value: clipboard })}
-                                label="Paste"
-                                icon={<Magic />}
-                            />
-                        </Box>
-                    </Flex>
-                }
             </GridItem>
+            <GridItem col={4} padding={[3, 2]} style={{
+                display: 'flex', 
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                }}>
+                <Box>
+                    {!state.closed &&
+                        <Checkbox
+                            checked={state.allDay}
+                            onChange={() => dispatch({type: 'TOGGLE_24'})}
+                        >24 Hours?</Checkbox>
+                    }
+                </Box>
+
+                <Flex gap={2}>
+                    <IconButton
+                        onClick={() => setClipboard(state)}
+                        label="Copy"
+                        disabled={state.closed}
+                        icon={<Duplicate />}
+                    />
+                    <IconButton
+                        disabled={Object.keys(clipboard).length === 0 || state.closed}
+                        onClick={() => dispatch({ type: 'REPLACE', value: clipboard })}
+                        label="Paste"
+                        icon={<Magic />}
+                    />
+                </Flex>
+            </GridItem>
+            
+            {!state.closed && !state.allDay &&
+                <>
+                    {slots}
+                    <GridItem col={3} />
+                    <GridItem col={5} padding={[3, 2]}>
+                        <Button 
+                            onClick={() => dispatch({type: 'ADD_SLOT'})}
+                            startIcon={<Plus />}
+                        >Add hours</Button>
+                    </GridItem>
+                </>
+            }
         </Grid>
     );
 };
 
 function HoursSlot({from, to, dispatch, allowRemove}) {
     return (
-        <Flex direction="row" gap={4}>
-            <TextInput
-                label="Opens"
-                style={{width: 120}}
-                value={from}
-                onChange={
-                    (e) => {
-                        dispatch({
-                            type: 'EDIT',
-                            side: 'from',
-                            value: e.target.value,
-                        });
+        <>
+            <GridItem col={3} /> {/*empty offset*/}
+            <GridItem col={3} padding={[3, 2]}>
+                <TextInput
+                    label="Opens"
+                    style={{width: 120}}
+                    value={from}
+                    onChange={
+                        (e) => {
+                            dispatch({
+                                type: 'EDIT',
+                                side: 'from',
+                                value: e.target.value,
+                            });
+                        }
                     }
-                }
-                type="time"
-            />
-            <TextInput
-                label="Closes" 
-                style={{width: 120}}
-                value={to}
-                onChange={
-                    (e) => {
-                        dispatch({
-                            type: 'EDIT',
-                            side: 'to',
-                            value: e.target.value,
-                        });
+                    type="time"
+                />
+            </GridItem>
+            <GridItem col={3} padding={[3, 2]}>
+                <TextInput
+                    label="Closes" 
+                    style={{width: 120}}
+                    value={to}
+                    onChange={
+                        (e) => {
+                            dispatch({
+                                type: 'EDIT',
+                                side: 'to',
+                                value: e.target.value,
+                            });
+                        }
                     }
-                }
-                type="time"
-            />
-            <Box style={{width: 50}}>
+                    type="time"
+                />
+            </GridItem>
+            <GridItem col={3} padding={[3, 2]} style={{display: 'flex', alignItems: 'center'}}>
                 {allowRemove &&
                     <IconButton 
                         onClick={() => dispatch({type: 'REMOVE_SLOT'})}
@@ -148,8 +160,8 @@ function HoursSlot({from, to, dispatch, allowRemove}) {
                         icon={<Cross />}
                     />
                 }
-            </Box>
-        </Flex>
+            </GridItem>
+        </>
     );
 }
 

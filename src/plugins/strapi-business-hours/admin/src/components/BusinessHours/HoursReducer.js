@@ -31,6 +31,7 @@ const HoursReducer = (state, action) => {
             break;
 
         case 'REPLACE':
+            newState[action.day] = {...action.value};
             newState[action.day].hours = action.value.hours.map((a) => ({...a}));
             break;
     }
