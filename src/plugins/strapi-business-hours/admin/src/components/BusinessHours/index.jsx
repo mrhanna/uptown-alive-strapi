@@ -25,7 +25,7 @@ const BusinessHours = forwardRef((props, ref) => {
 
     const [state, dispatch] = useReducer(HoursReducer, value, (data) => data ? JSON.parse(data) : days.reduce(
         (acc, day) => { 
-            acc[day.toLowerCase()] = { closed: false, hours: [{ from: '', to: '' }] };
+            acc[day.toLowerCase()] = { closed: false, allDay: false, hours: [{ from: '', to: '' }] };
             return acc;
         }, {}));
 

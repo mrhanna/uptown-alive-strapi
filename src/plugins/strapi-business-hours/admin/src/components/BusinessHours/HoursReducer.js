@@ -2,8 +2,14 @@ const HoursReducer = (state, action) => {
     const newState = {...state};
 
     switch (action.type) {
-        case 'TOGGLE':
+        case 'TOGGLE_CLOSED':
             newState[action.day].closed = !state[action.day].closed;
+            newState[action.day].allDay = false;
+            newState[action.day].hours = [{ from: '', to: '' }];
+            break;
+
+        case 'TOGGLE_24':
+            newState[action.day].allDay = !state[action.day].allDay;
             newState[action.day].hours = [{ from: '', to: '' }];
             break;
 

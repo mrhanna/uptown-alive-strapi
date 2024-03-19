@@ -4,8 +4,8 @@ import { useIntl } from 'react-intl';
 import getTrad from '../../utils/getTrad';
 
 import {
-    Button,
     Box,
+    Checkbox,
     Flex,
     Grid,
     GridItem,
@@ -64,10 +64,17 @@ const HoursRow = (props) => {
                         })
                     }
                     checked={!state.closed}
-                    onChange={() => dispatch({type: 'TOGGLE'})}
+                    onChange={() => dispatch({type: 'TOGGLE_CLOSED'})}
                 />
 
-                { !state.closed &&
+                {!state.closed &&
+                    <Checkbox
+                        checked={state.allDay}
+                        onChange={() => dispatch({type: 'TOGGLE_24'})}
+                    >Open 24 Hours</Checkbox>
+                }
+
+                {!state.closed && !state.allDay &&
                     <Flex direction="row" gap={4} marginTop={4}>
                         <Box>
                             {slots}
