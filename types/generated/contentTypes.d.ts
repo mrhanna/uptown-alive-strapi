@@ -848,6 +848,7 @@ export interface ApiBusinessBusiness extends Schema.CollectionType {
     links: Attribute.Component<'business.links'>;
     hours: Attribute.JSON &
       Attribute.CustomField<'plugin::strapi-business-hours.businessHours'>;
+    photos: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

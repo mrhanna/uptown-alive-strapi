@@ -45,6 +45,13 @@
     "hours": {
       "type": "customField",
       "customField": "plugin::strapi-business-hours.businessHours"
+    },
+    "photos": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }
