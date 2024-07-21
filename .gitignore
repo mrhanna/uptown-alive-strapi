@@ -158,3 +158,4 @@ examples/**/types/generated
 .strapi-updater.json
 # React Component Preview
 previewConfig.json
+public
