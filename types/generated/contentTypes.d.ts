@@ -925,6 +925,7 @@ export interface ApiTagTag extends Schema.CollectionType {
       'manyToMany',
       'api::business.business'
     >;
+    slug: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &

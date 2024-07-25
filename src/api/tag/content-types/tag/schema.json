@@ -25,6 +25,9 @@
       "relation": "manyToMany",
       "target": "api::business.business",
       "mappedBy": "tags"
+    },
+    "slug": {
+      "type": "string"
     }
   }
 }
