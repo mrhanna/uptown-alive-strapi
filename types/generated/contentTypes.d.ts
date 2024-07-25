@@ -838,11 +838,6 @@ export interface ApiBusinessBusiness extends Schema.CollectionType {
       'manyToMany',
       'api::tag.tag'
     >;
-    features: Attribute.Relation<
-      'api::business.business',
-      'manyToMany',
-      'api::feature.feature'
-    >;
     slug: Attribute.String & Attribute.Unique;
     location: Attribute.Component<'general.location'>;
     links: Attribute.Component<'business.links'>;
@@ -867,41 +862,38 @@ export interface ApiBusinessBusiness extends Schema.CollectionType {
   };
 }
 
-export interface ApiFeatureFeature extends Schema.CollectionType {
-  collectionName: 'features';
+export interface ApiPostPost extends Schema.CollectionType {
+  collectionName: 'posts';
   info: {
-    singularName: 'feature';
-    pluralName: 'features';
-    displayName: 'Feature';
-    description: '';
+    singularName: 'post';
+    pluralName: 'posts';
+    displayName: 'Post';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
+    type: Attribute.Enumeration<
+      ['Vertical Video', 'Media Gallery', 'Blog', 'Quote']
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'Blog'>;
+    featuredMedia: Attribute.Media;
+    gallery: Attribute.Media;
     content: Attribute.Blocks;
-    published: Attribute.Date;
+    author: Attribute.String;
     businesses: Attribute.Relation<
-      'api::feature.feature',
-      'manyToMany',
+      'api::post.post',
+      'oneToMany',
       'api::business.business'
     >;
-    slug: Attribute.String;
+    slug: Attribute.String & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::feature.feature',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::feature.feature',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -955,7 +947,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::business.business': ApiBusinessBusiness;
-      'api::feature.feature': ApiFeatureFeature;
+      'api::post.post': ApiPostPost;
       'api::tag.tag': ApiTagTag;
     }
   }

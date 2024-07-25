@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "singularName": "post",
+    "pluralName": "posts",
+    "displayName": "Post"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Vertical Video",
+        "Media Gallery",
+        "Blog",
+        "Quote"
+      ],
+      "default": "Blog",
+      "required": true
+    },
+    "featuredMedia": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "gallery": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "content": {
+      "type": "blocks"
+    },
+    "author": {
+      "type": "string"
+    },
+    "businesses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::business.business"
+    },
+    "slug": {
+      "type": "string",
+      "unique": true
+    }
+  }
+}

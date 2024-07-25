@@ -21,12 +21,6 @@
       "target": "api::tag.tag",
       "inversedBy": "businesses"
     },
-    "features": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::feature.feature",
-      "mappedBy": "businesses"
-    },
     "slug": {
       "type": "string",
       "unique": true,

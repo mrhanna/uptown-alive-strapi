@@ -7,10 +7,6 @@ module.exports = ({ env }) => ({
                     field: 'slug',
                     references: 'name',
                 },
-                feature: {
-                    field: 'slug',
-                    references: 'title',
-                },
                 tag: {
                     field: 'slug',
                     references: 'name',                    
