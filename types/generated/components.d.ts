@@ -30,6 +30,8 @@ export interface BusinessLinks extends Schema.Component {
     instagram: Attribute.String;
     twitter: Attribute.String;
     tiktok: Attribute.String;
+    phone: Attribute.String &
+      Attribute.CustomField<'plugin::strapi-phone-validator.phone'>;
   };
 }
 

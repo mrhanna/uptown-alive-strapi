@@ -21,6 +21,10 @@
     },
     "tiktok": {
       "type": "string"
+    },
+    "phone": {
+      "type": "customField",
+      "customField": "plugin::strapi-phone-validator.phone"
     }
   }
 }

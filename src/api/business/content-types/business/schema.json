@@ -47,11 +47,12 @@
       "customField": "plugin::strapi-business-hours.businessHours"
     },
     "photos": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     }
   }
 }
