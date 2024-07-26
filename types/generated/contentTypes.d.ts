@@ -868,6 +868,7 @@ export interface ApiPostPost extends Schema.CollectionType {
     singularName: 'post';
     pluralName: 'posts';
     displayName: 'Post';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -888,6 +889,8 @@ export interface ApiPostPost extends Schema.CollectionType {
       'api::business.business'
     >;
     slug: Attribute.String & Attribute.Unique;
+    title: Attribute.String;
+    subtitle: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
